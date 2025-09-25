@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+    <!--This scenario file was created by maze_scene_openness_aligned on 2025-09-24T17:22:38-->
+    <!--Obstacles-->
+    <obstacle x1="10.5" y1="-10.5" x2="10.5" y2="10.5"/>
+    <obstacle x1="9.5" y1="-9.5" x2="9.5" y2="9.5"/>
+    <obstacle x1="-10.5" y1="-10.5" x2="-10.5" y2="10.5"/>
+    <obstacle x1="-9.5" y1="-9.5" x2="-9.5" y2="9.5"/>
+    <obstacle x1="10.5" y1="-10.5" x2="-10.5" y2="-10.5"/>
+    <obstacle x1="10.5" y1="10.5" x2="-10.5" y2="10.5"/>
+    <obstacle x1="9.5" y1="-9.5" x2="-9.5" y2="-9.5"/>
+    <obstacle x1="9.5" y1="9.5" x2="-9.5" y2="9.5"/>
+    <!--Waypoints (incl. WaitingQueues)-->
+    <waypoint id="wp_0" x="-4.5" y="-7.5" r="0.8"/>
+    <waypoint id="wp_1" x="-5.5" y="-9.5" r="0.8"/>
+    <waypoint id="wp_2" x="7.5" y="5.5" r="0.8"/>
+    <waypoint id="wp_3" x="6.5" y="-2.5" r="0.8"/>
+    <waypoint id="wp_4" x="5.5" y="-2.5" r="0.8"/>
+    <waypoint id="wp_5" x="-7.5" y="-3.5" r="0.8"/>
+    <waypoint id="wp_6" x="0.5" y="-3.5" r="0.8"/>
+    <waypoint id="wp_7" x="9.5" y="8.5" r="0.8"/>
+    <waypoint id="wp_8" x="-0.5" y="-2.5" r="0.8"/>
+    <waypoint id="wp_9" x="-7.5" y="-5.5" r="0.8"/>
+    <waypoint id="wp_10" x="-4.5" y="-1.5" r="0.8"/>
+    <waypoint id="wp_11" x="8.5" y="-3.5" r="0.8"/>
+    <waypoint id="wp_12" x="-3.5" y="-2.5" r="0.8"/>
+    <waypoint id="wp_13" x="-2.5" y="-8.5" r="0.8"/>
+    <waypoint id="wp_14" x="6.5" y="-3.5" r="0.8"/>
+    <!--Attractions-->
+    <!--Agents-->
+    <!--ped_0-->
+    <agent x="-4.5" y="-7.5" n="1" type="0" dx="0" dy="0">
+        <addwaypoint id="wp_0"/>
+        <addwaypoint id="wp_1"/>
+        <addwaypoint id="wp_2"/>
+    </agent>
+    <!--ped_1-->
+    <agent x="6.5" y="-2.5" n="1" type="0" dx="0" dy="0">
+        <addwaypoint id="wp_3"/>
+        <addwaypoint id="wp_4"/>
+        <addwaypoint id="wp_5"/>
+    </agent>
+    <!--ped_2-->
+    <agent x="0.5" y="-3.5" n="1" type="0" dx="0" dy="0">
+        <addwaypoint id="wp_6"/>
+        <addwaypoint id="wp_7"/>
+        <addwaypoint id="wp_8"/>
+    </agent>
+    <!--ped_3-->
+    <agent x="-7.5" y="-5.5" n="1" type="0" dx="0" dy="0">
+        <addwaypoint id="wp_9"/>
+        <addwaypoint id="wp_10"/>
+        <addwaypoint id="wp_11"/>
+    </agent>
+    <!--ped_4-->
+    <agent x="-2.5" y="-8.5" n="1" type="0" dx="0" dy="0">
+        <addwaypoint id="wp_13"/>
+        <addwaypoint id="wp_14"/>
+        <addwaypoint id="wp_12"/>
+    </agent>
+</scenario>

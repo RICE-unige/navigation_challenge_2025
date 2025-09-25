@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="maze_world">
+    <!-- Generated 2025-09-24T17:22:38 -->
+    <include><uri>model://ground_plane</uri></include>
+    <include><uri>model://sun</uri></include>
+
+    <model name="maze">
+      <static>true</static>
+      <pose>0.000000 0.000000 0 0 0 7.853982</pose>
+      <link name="maze_link">
+      <collision name="c_0">
+        <pose>0.000000 -10.000000 1.000000 0.000000 0.000000 0.000000</pose>
+        <geometry><box><size>21.000000 1.000000 2.000000</size></box></geometry>
+      </collision>
+      <visual name="v_0">
+        <pose>0.000000 -10.000000 1.000000 0.000000 0.000000 0.000000</pose>
+        <geometry><box><size>21.000000 1.000000 2.000000</size></box></geometry>
+        <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+      </visual>
+      <collision name="c_1">
+        <pose>-10.000000 0.500000 1.000000 0.000000 0.000000 0.000000</pose>
+        <geometry><box><size>1.000000 20.000000 2.000000</size></box></geometry>
+      </collision>
+      <visual name="v_1">
+        <pose>-10.000000 0.500000 1.000000 0.000000 0.000000 0.000000</pose>
+        <geometry><box><size>1.000000 20.000000 2.000000</size></box></geometry>
+        <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+      </visual>
+      <collision name="c_2">
+        <pose>10.000000 0.500000 1.000000 0.000000 0.000000 0.000000</pose>
+        <geometry><box><size>1.000000 20.000000 2.000000</size></box></geometry>
+      </collision>
+      <visual name="v_2">
+        <pose>10.000000 0.500000 1.000000 0.000000 0.000000 0.000000</pose>
+        <geometry><box><size>1.000000 20.000000 2.000000</size></box></geometry>
+        <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+      </visual>
+      <collision name="c_3">
+        <pose>0.000000 10.000000 1.000000 0.000000 0.000000 0.000000</pose>
+        <geometry><box><size>19.000000 1.000000 2.000000</size></box></geometry>
+      </collision>
+      <visual name="v_3">
+        <pose>0.000000 10.000000 1.000000 0.000000 0.000000 0.000000</pose>
+        <geometry><box><size>19.000000 1.000000 2.000000</size></box></geometry>
+        <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse><specular>0.1 0.1 0.1 1</specular></material>
+      </visual>
+      </link>
+    </model>
+    <plugin name="ActorPosesPlugin" filename="libActorPosesPlugin.so"></plugin>
+  </world>
+</sdf>
