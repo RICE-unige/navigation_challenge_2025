@@ -21,6 +21,7 @@
       <arg name="laser_model" value="$(arg laser_model)"/>
       <arg name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
       <arg name="gzpose" value="$(arg gzpose)"/>
+      <arg name="model_name" value="mobile_base"/>
     </include>
   </group>
 
@@ -28,6 +29,7 @@
     <include file="$(find simple_models_gazebo)/launch/simple_models_spawn.launch">
       <arg name="laser_model" value="$(arg laser_model)"/>
       <arg name="gzpose" value="$(arg gzpose)"/>
+      <arg name="model_name" value="mobile_base"/>
       <arg name="robot" value="simple_pmb2"/>
     </include>
 
