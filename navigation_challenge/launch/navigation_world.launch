@@ -40,9 +40,10 @@
         output="screen">
   </node>
 
-   <!-- Transform per PMB2 -->
-  <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster"
-      args="-1 -1 0 0 0 0 map odom 100"/>
+   <!-- Transform per PMB2 - DISABLED: Conflicts with SLAM -->
+  <!-- SLAM should handle map->odom transform, not static publisher -->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster"
+      args="-1 -1 0 0 0 0 map odom 100"/> -->
 
   <!-- Maze generator -->
   <group if="$(arg generate_maze)">
