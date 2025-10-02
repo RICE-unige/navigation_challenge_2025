@@ -1,0 +1,31 @@
+<launch>
+  <!-- ============================================================ -->
+  <!-- Pedestrian World Launcher - I-RIM 2025 Challenge            -->
+  <!-- Modular launch file for different pedestrian scenarios      -->
+  <!-- ============================================================ -->
+  
+  <!-- World selection argument: simple_office, hospital, pal_office -->
+  <arg name="world_name" default="simple_office" 
+       doc="Choose pedestrian world: simple_office, hospital, or pal_office"/>
+  
+  <!-- GUI argument (passed through) -->
+  <arg name="gui" default="true"/>
+  
+  <!-- World and scenario file paths based on selection -->
+  <arg name="world_file" value="$(find navigation_challenge)/worlds/$(arg world_name)_with_pedestrians.world"/>
+  <arg name="scene_file" value="$(find navigation_challenge)/scenarios/$(arg world_name)_pedestrians.xml"/>
+  
+  <!-- Launch the navigation world with selected pedestrian scenario -->
+  <include file="$(find navigation_challenge)/launch/navigation_world.launch">
+    <arg name="world_name" value="$(arg world_file)"/>
+    <arg name="scene_file" value="$(arg scene_file)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="generate_maze" value="false"/>
+  </include>
+  
+  <!-- Info message about loaded world -->
+  <node pkg="rostopic" type="rostopic" name="world_info" 
+        args="pub -l /world_info std_msgs/String 'Loaded world: $(arg world_name)'" 
+        output="screen"/>
+  
+</launch>

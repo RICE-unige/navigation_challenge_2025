@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+    <!-- Simple Office World Pedestrian Scenario -->
+    <!-- 10.2m × 15.2m office with 2 rooms and open hall -->
+    <!-- 8 agents: 4 office workers, 2 visitors, 2 patrol/cross-traffic -->
+    
+    <!-- Outer walls (boundaries) -->
+    <obstacle x1="-5" y1="-5" x2="5" y2="-5"/>     <!-- South wall -->
+    <obstacle x1="-5" y1="10" x2="5" y2="10"/>     <!-- North wall -->
+    <obstacle x1="-5" y1="-5" x2="-5" y2="10"/>    <!-- West wall -->
+    <obstacle x1="5" y1="-5" x2="5" y2="10"/>      <!-- East wall -->
+    
+    <!-- Interior dividing walls (create rooms) -->
+    <!-- CRITICAL: These MUST match the world file exactly! -->
+    <!-- wall_5: pose=(-2, 5), size=(6, 0.2, 2) means x from -5 to 1, y at 5 -->
+    <obstacle x1="-5" y1="5" x2="1" y2="5"/>
+    
+    <!-- wall_6: pose=(3.5, 5), size=(3, 0.2, 2) means x from 2 to 5, y at 5 -->
+    <obstacle x1="2" y1="5" x2="5" y2="5"/>
+    
+    
+    <!-- ============================================ -->
+    <!-- WAYPOINTS: Strategic locations in the world -->
+    <!-- ============================================ -->
+    
+    <!-- Room 1 waypoints (left room, north section) -->
+    <waypoint id="room1_center" x="-3.5" y="7.5" r="0.5"/>
+    <waypoint id="room1_back" x="-3.5" y="9" r="0.5"/>
+    <waypoint id="room1_side" x="-3" y="7" r="0.5"/>
+    <waypoint id="room1_near_door" x="-3" y="5.5" r="0.5"/>
+    
+    <!-- Room 2 waypoints (right room, north section) -->
+    <waypoint id="room2_center" x="3" y="7.5" r="0.5"/>
+    <waypoint id="room2_back" x="3" y="9" r="0.5"/>
+    <waypoint id="room2_side" x="2.5" y="7" r="0.5"/>
+    <waypoint id="room2_near_door" x="2.5" y="5.5" r="0.5"/>
+    
+    <!-- Doorway waypoints (transition points) -->
+    <!-- Doorway is between x=1 and x=2 at y=5 (1m wide gap) -->
+    <waypoint id="door_entrance" x="1.5" y="5" r="0.5"/>
+    <waypoint id="door_hall_side" x="1.5" y="4.5" r="0.5"/>
+    <waypoint id="door_room_side" x="1.5" y="5.5" r="0.5"/>
+    
+    <!-- Main hall waypoints (south section, y=-5 to 5) -->
+    <waypoint id="hall_center" x="0" y="0" r="0.8"/>
+    <waypoint id="hall_north" x="0" y="3.5" r="0.8"/>
+    <waypoint id="hall_south" x="0" y="-3" r="0.8"/>
+    <waypoint id="hall_west" x="-3" y="0" r="0.8"/>
+    <waypoint id="hall_east" x="3" y="0" r="0.8"/>
+    
+    <!-- Patrol rectangle waypoints -->
+    <waypoint id="patrol_nw" x="-3" y="3" r="0.7"/>
+    <waypoint id="patrol_ne" x="3" y="3" r="0.7"/>
+    <waypoint id="patrol_se" x="3" y="0" r="0.7"/>
+    <waypoint id="patrol_sw" x="-3" y="0" r="0.7"/>
+    
+    <!-- Cross-traffic waypoints -->
+    <waypoint id="cross_h_west" x="-4" y="-2" r="0.6"/>
+    <waypoint id="cross_h_east" x="4" y="-2" r="0.6"/>
+    <waypoint id="cross_v_south" x="0" y="-4" r="0.6"/>
+    <waypoint id="cross_v_north" x="0" y="4" r="0.6"/>
+    
+    <!-- Diagonal path waypoints -->
+    <waypoint id="diag_start" x="2" y="-3" r="0.6"/>
+    <waypoint id="diag_mid" x="-2" y="2" r="0.6"/>
+    <waypoint id="diag_end" x="3" y="3" r="0.6"/>
+    
+    
+    <!-- ============================================ -->
+    <!-- AGENTS: 8 pedestrians with diverse behaviors -->
+    <!-- ============================================ -->
+    
+    <!-- ============ ROOM 1: 2 agents ============ -->
+    
+    <!-- Agent 1: Office worker in Room 1 (mostly stationary) -->
+    <agent x="-3.5" y="7" n="1" type="0" dx="0" dy="0">
+        <addwaypoint id="room1_center"/>
+        <addwaypoint id="room1_back"/>
+        <addwaypoint id="room1_side"/>
+        <addwaypoint id="room1_center"/>
+    </agent>
+    
+    <!-- Agent 2: Visitor in Room 1 (enters/exits room via doorway) -->
+    <agent x="-4" y="8.5" n="1" type="1" dx="0" dy="0">
+        <addwaypoint id="room1_back"/>
+        <addwaypoint id="room1_near_door"/>
+        <addwaypoint id="door_room_side"/>
+        <addwaypoint id="door_entrance"/>
+        <addwaypoint id="door_hall_side"/>
+        <addwaypoint id="hall_north"/>
+        <addwaypoint id="hall_center"/>
+        <addwaypoint id="hall_north"/>
+        <addwaypoint id="door_hall_side"/>
+        <addwaypoint id="door_entrance"/>
+        <addwaypoint id="door_room_side"/>
+        <addwaypoint id="room1_near_door"/>
+        <addwaypoint id="room1_back"/>
+    </agent>
+    
+    
+    <!-- ============ ROOM 2: 2 agents ============ -->
+    
+    <!-- Agent 3: Office worker in Room 2 (mostly stationary) -->
+    <agent x="3" y="7.5" n="1" type="2" dx="0" dy="0">
+        <addwaypoint id="room2_center"/>
+        <addwaypoint id="room2_back"/>
+        <addwaypoint id="room2_side"/>
+        <addwaypoint id="room2_center"/>
+    </agent>
+    
+    <!-- Agent 4: Visitor in Room 2 (enters/exits room via doorway) -->
+    <agent x="2.5" y="8" n="1" type="3" dx="0" dy="0">
+        <addwaypoint id="room2_center"/>
+        <addwaypoint id="room2_near_door"/>
+        <addwaypoint id="door_room_side"/>
+        <addwaypoint id="door_entrance"/>
+        <addwaypoint id="door_hall_side"/>
+        <addwaypoint id="hall_north"/>
+        <addwaypoint id="hall_east"/>
+        <addwaypoint id="hall_center"/>
+        <addwaypoint id="hall_north"/>
+        <addwaypoint id="door_hall_side"/>
+        <addwaypoint id="door_entrance"/>
+        <addwaypoint id="door_room_side"/>
+        <addwaypoint id="room2_near_door"/>
+        <addwaypoint id="room2_center"/>
+    </agent>
+    
+    
+    <!-- ============ MAIN HALL: 4 agents ============ -->
+    
+    <!-- Agent 5: Hall patrol (rectangular patrol pattern) -->
+    <agent x="-3" y="0" n="1" type="4" dx="0" dy="0">
+        <addwaypoint id="patrol_sw"/>
+        <addwaypoint id="patrol_nw"/>
+        <addwaypoint id="patrol_ne"/>
+        <addwaypoint id="patrol_se"/>
+        <addwaypoint id="patrol_sw"/>
+    </agent>
+    
+    <!-- Agent 6: Cross-traffic horizontal (east-west movement) -->
+    <agent x="-4" y="-2" n="1" type="0" dx="0" dy="0">
+        <addwaypoint id="cross_h_west"/>
+        <addwaypoint id="cross_h_east"/>
+        <addwaypoint id="cross_h_west"/>
+    </agent>
+    
+    <!-- Agent 7: Cross-traffic vertical (north-south movement, crosses robot!) -->
+    <agent x="0" y="-4" n="1" type="1" dx="0" dy="0">
+        <addwaypoint id="cross_v_south"/>
+        <addwaypoint id="cross_v_north"/>
+        <addwaypoint id="cross_v_south"/>
+    </agent>
+    
+    <!-- Agent 8: Random visitor (unpredictable diagonal paths) -->
+    <agent x="2" y="-3" n="1" type="2" dx="0" dy="0">
+        <addwaypoint id="diag_start"/>
+        <addwaypoint id="diag_mid"/>
+        <addwaypoint id="diag_end"/>
+        <addwaypoint id="hall_center"/>
+        <addwaypoint id="diag_start"/>
+    </agent>
+    
+</scenario>

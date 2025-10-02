@@ -1,6 +1,9 @@
 <launch>
   <param name="use_sim_time" value="true"/>
   
+  <!-- Set Gazebo model path to include pedsim actor models -->
+  <env name="GAZEBO_MODEL_PATH" value="$(find pedsim_gazebo_plugin)/models:$(optenv GAZEBO_MODEL_PATH)"/>
+  
   <!-- ARGUMENTS -->
   <arg name="kbd_teleop" default="false"/>
   <arg name="rqt_teleop" default="false"/>
@@ -35,7 +38,7 @@
   </group>
   
 
-  <!-- Genera scenario pedsim -->
+  <!-- Spawn pedsim agents in Gazebo -->
   <node pkg="pedsim_gazebo_plugin" type="spawn_pedsim_agents.py" name="spawn_pedsim_agents" 
         output="screen">
   </node>
