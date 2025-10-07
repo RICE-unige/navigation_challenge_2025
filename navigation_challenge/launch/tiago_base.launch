@@ -2,10 +2,7 @@
   <arg name="laser_model"  default="sick-571"/>
   <arg name="rgbd_sensors"  default="false"/>
   
-  <!-- Pedestrian world selection: simple_office, hospital, pal_office -->
-  <arg name="ped_world" default="simple_office" 
-       doc="Pedestrian world to load: simple_office (8 agents), hospital (18 agents), or pal_office (15 agents)"/>
-  
+  <!-- Simple Office with Pedestrians (8 agents) -->
   <arg name="gzpose" default="-x 0.0 -y 0.0 -z 0.0 -R 0.0 -P 0.0 -Y 0.0"/>
   <arg name="gui" default="true"/>
   <arg name="debug" default="false"/>
@@ -18,9 +15,8 @@
 
   <env name="LC_NUMERIC" value="C" />
 
-  <!-- Launch pedestrian world (modular, switchable) -->
+  <!-- Launch Simple Office pedestrian world -->
   <include file="$(find navigation_challenge)/launch/pedestrian_world.launch">
-    <arg name="world_name" value="$(arg ped_world)"/>
     <arg name="gui" value="$(arg gui)"/>
   </include>
   <!-- spawn robot in simulation -->

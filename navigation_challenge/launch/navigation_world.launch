@@ -1,8 +1,8 @@
 <launch>
   <param name="use_sim_time" value="true"/>
   
-  <!-- Set Gazebo model path to include pedsim actor models -->
-  <env name="GAZEBO_MODEL_PATH" value="$(find pedsim_gazebo_plugin)/models:$(optenv GAZEBO_MODEL_PATH)"/>
+  <!-- Set Gazebo model path to include pedsim actor models AND PAL world models -->
+  <env name="GAZEBO_MODEL_PATH" value="$(find pedsim_gazebo_plugin)/models:$(find pal_gazebo_worlds)/models:$(optenv GAZEBO_MODEL_PATH)"/>
   
   <!-- ARGUMENTS -->
   <arg name="kbd_teleop" default="false"/>
