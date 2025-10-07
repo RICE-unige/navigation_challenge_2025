@@ -1,0 +1,27 @@
+<launch>
+  <!-- ============================================================ -->
+  <!-- Maze World Launcher - Basic Pedsim World                    -->
+  <!-- Simple square walls with 5 pedestrians                      -->
+  <!-- ============================================================ -->
+  
+  <!-- GUI argument -->
+  <arg name="gui" default="true"/>
+  
+  <!-- World and scenario file paths -->
+  <arg name="world_file" value="$(find navigation_challenge)/worlds/maze_scene.world"/>
+  <arg name="scene_file" value="$(find navigation_challenge)/scenarios/maze_scene.xml"/>
+  
+  <!-- Launch the navigation world with maze scenario -->
+  <include file="$(find navigation_challenge)/launch/navigation_world.launch">
+    <arg name="world_name" value="$(arg world_file)"/>
+    <arg name="scene_file" value="$(arg scene_file)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="generate_maze" value="false"/>
+  </include>
+  
+  <!-- Info message about loaded world -->
+  <node pkg="rostopic" type="rostopic" name="world_info" 
+        args="pub -l /world_info std_msgs/String 'Loaded_world_maze_scene'" 
+        output="screen"/>
+  
+</launch>

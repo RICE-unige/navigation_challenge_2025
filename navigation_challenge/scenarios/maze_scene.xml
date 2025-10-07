@@ -58,4 +58,22 @@
         <addwaypoint id="wp_14"/>
         <addwaypoint id="wp_12"/>
     </agent>
+    <!--ped_5-->
+    <agent x="2.5" y="6.5" n="1" type="0" dx="0" dy="0">
+        <addwaypoint id="wp_2"/>
+        <addwaypoint id="wp_7"/>
+        <addwaypoint id="wp_11"/>
+    </agent>
+    <!--ped_6-->
+    <agent x="-6.5" y="3.5" n="1" type="0" dx="0" dy="0">
+        <addwaypoint id="wp_5"/>
+        <addwaypoint id="wp_10"/>
+        <addwaypoint id="wp_6"/>
+    </agent>
+    <!--ped_7-->
+    <agent x="4.5" y="-6.5" n="1" type="0" dx="0" dy="0">
+        <addwaypoint id="wp_14"/>
+        <addwaypoint id="wp_4"/>
+        <addwaypoint id="wp_8"/>
+    </agent>
 </scenario>
