@@ -1,17 +1,28 @@
 <launch>
+  <!-- TIAGo Robot Arguments -->
+  <arg name="robot"  default="titanium"/>
+  <arg name="arm"  default="$(eval {'iron': False}.get(arg('robot'), True))"/>
+  <arg name="end_effector"  default="pal-gripper"/>
+  <arg name="ft_sensor"  default="$(eval {'titanium': 'schunk-ft'}.get(arg('robot'), 'false'))"/>
   <arg name="laser_model"  default="sick-571"/>
+  <arg name="camera_model"  default="orbbec-astra"/>
   <arg name="rgbd_sensors"  default="false"/>
+  <arg name="base_type" default="pmb2"/>
   
   <!-- Simple Office with Pedestrians (8 agents) -->
   <arg name="gzpose" default="-x 0.0 -y 0.0 -z 0.0 -R 0.0 -P 0.0 -Y 0.0"/>
   <arg name="gui" default="true"/>
   <arg name="debug" default="false"/>
-  <arg name="public_sim" default="false"/>
+  <arg name="public_sim" default="true"/>
   <arg name="recording" default="false"/>
+  <arg name="tuck_arm" default="true"/>
   <arg name="extra_gazebo_args" default=""/>
   <arg name="extra_gz_model_path" default=""/>
   <arg name="extra_gz_resource_path" default=""/>
   <arg name="simple_sim_model" default="false"/>
+  <arg name="use_moveit_camera" default="false"/>
+  <arg name="use_dynamic_footprint" default="false"/>
+  <arg name="advanced_grasping" default="false"/>
 
   <env name="LC_NUMERIC" value="C" />
 
@@ -19,34 +30,36 @@
   <include file="$(find navigation_challenge)/launch/pedestrian_world.launch">
     <arg name="gui" value="$(arg gui)"/>
   </include>
+  
   <!-- spawn robot in simulation -->
-  <group unless="$(arg simple_sim_model)">
-    <include file="$(find pmb2_gazebo)/launch/pmb2_spawn.launch">
-      <arg name="laser_model" value="$(arg laser_model)"/>
-      <arg name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
-      <arg name="gzpose" value="$(arg gzpose)"/>
-      <arg name="model_name" value="mobile_base"/>
-    </include>
-  </group>
-
-  <group if="$(arg simple_sim_model)">
-    <include file="$(find simple_models_gazebo)/launch/simple_models_spawn.launch">
-      <arg name="laser_model" value="$(arg laser_model)"/>
-      <arg name="gzpose" value="$(arg gzpose)"/>
-      <arg name="model_name" value="mobile_base"/>
-      <arg name="robot" value="simple_pmb2"/>
-    </include>
-
-    <node name="increase_real_time_factor" pkg="pal_gazebo_worlds" type="increase_real_time_factor" output="screen">
-      <param name="real_time_factor" value="6.0"/>
-    </node>
-
-  </group>
+  <include file="$(find tiago_gazebo)/launch/tiago_spawn.launch">
+    <arg name="arm" value="$(arg arm)"/>
+    <arg name="end_effector" value="$(arg end_effector)"/>
+    <arg name="ft_sensor" value="$(arg ft_sensor)"/>
+    <arg name="laser_model" value="$(arg laser_model)"/>
+    <arg name="camera_model" value="$(arg camera_model)"/>
+    <arg name="gzpose" value="$(arg gzpose)"/>
+    <arg name="base_type" value="$(arg base_type)"/>
+    <arg name="model_name" value="mobile_base"/>
+  </include>
 
   <!-- bring up robot -->
-  <include file="$(find pmb2_gazebo)/launch/simulation_pmb2_bringup.launch">
+  <include file="$(find tiago_gazebo)/launch/simulation_tiago_bringup.launch">
+    <arg name="arm" value="$(arg arm)"/>
+    <arg name="end_effector" value="$(arg end_effector)"/>
+    <arg name="ft_sensor" value="$(arg ft_sensor)"/>
+    <arg name="laser_model" value="$(arg laser_model)"/>
+    <arg name="camera_model" value="$(arg camera_model)"/>
     <arg name="public_sim"  value="$(arg public_sim)"/>
-    <arg name="simple_sim_model"  value="$(arg simple_sim_model)"/>
+    <arg name="use_moveit_camera" value="$(arg use_moveit_camera)"/>
+    <arg name="use_dynamic_footprint" value="$(arg use_dynamic_footprint)"/>
+    <arg name="base_type" value="$(arg base_type)"/>
+    <arg name="advanced_grasping" value="$(arg advanced_grasping)" unless="$(arg public_sim)"/>
   </include>
+  
+  <!-- Tuck arm by default for navigation -->
+  <group if="$(arg tuck_arm)">
+    <node name="tuck_arm" pkg="tiago_gazebo" type="tuck_arm.py" output="screen"/>
+  </group>
 
 </launch>
